@@ -1,0 +1,1967 @@
+{
+  "name": "IPO Intelligence System — Simple RAG",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message",
+          "callback_query"
+        ],
+        "additionalFields": {}
+      },
+      "id": "dd22c3b3-9871-4ffb-b33d-c492a130e919",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "position": [
+        -480,
+        496
+      ],
+      "typeVersion": 1.2,
+      "webhookId": "ipo-v2-webhook",
+      "credentials": {
+        "telegramApi": {
+          "id": "bycQfgOeXmKCBobM",
+          "name": "IPO Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "r0",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.message?.text }}",
+                    "rightValue": "/start"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "start"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "r1",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.message?.text }}",
+                    "rightValue": "/dokumen"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "dokumen"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "r2",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.message?.text }}",
+                    "rightValue": "/tanya"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "tanya"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "r3",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.message?.text }}",
+                    "rightValue": "/ringkasan"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ringkasan"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "r4",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.message?.text }}",
+                    "rightValue": "/daftar"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "daftar"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "r5",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.message?.text }}",
+                    "rightValue": "/bantuan"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "bantuan"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "r6",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "exists",
+                      "singleValue": true
+                    },
+                    "leftValue": "={{ $json.callback_query }}"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "callback"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "r7",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "exists",
+                      "singleValue": true
+                    },
+                    "leftValue": "={{ $json.message.document }}"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "document"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "r8",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "exists",
+                      "singleValue": true
+                    },
+                    "leftValue": "={{ $json.message.text }}"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "text"
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "id": "620504e0-fa74-42ed-809c-b7f59f1914d7",
+      "name": "Command Router",
+      "type": "n8n-nodes-base.switch",
+      "position": [
+        -320,
+        368
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}",
+        "text": "⏳ <b>Memproses prospektus...</b>\nRingkasan akan dikirim dalam 1 pesan, user dapat /tanya setelah ada pesan \"Dokumen tersimpan untuk Q&A\", estimasi 2 menit.",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "0049f612-811c-4a9e-927d-fffd5c44ec27",
+      "name": "Send Processing",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        0,
+        816
+      ],
+      "typeVersion": 1.2,
+      "webhookId": "99b356fa-9b81-4f55-aeac-ad2116ab64e2",
+      "credentials": {
+        "telegramApi": {
+          "id": "bycQfgOeXmKCBobM",
+          "name": "IPO Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $('Telegram Trigger').item.json.message.document.file_id }}",
+        "additionalFields": {}
+      },
+      "id": "e7c4c923-5420-4631-86fb-fc1c0ed39d02",
+      "name": "Telegram Download File",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        240,
+        816
+      ],
+      "typeVersion": 1.2,
+      "webhookId": "1df22623-6eae-4b6f-8082-f36c05231591",
+      "credentials": {
+        "telegramApi": {
+          "id": "bycQfgOeXmKCBobM",
+          "name": "IPO Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "id": "63ba283f-a53b-44e7-aa9e-3820e8b82d4b",
+      "name": "Extract from File",
+      "type": "n8n-nodes-base.extractFromFile",
+      "position": [
+        480,
+        816
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const text      = $input.first().json.text || '';\nconst numpages  = $input.first().json.numpages || '?';\nconst fileName  = $('Telegram Trigger').first().json.message?.document?.file_name || 'prospektus.pdf';\nconst chatId    = $('Telegram Trigger').first().json.message?.chat?.id;\n\n// ─── 3-part sampling: awal + tengah + akhir ───────────────────────────────────\nconst total = text.length;\nconst P1 = 25000, P2 = 20000, P3 = 10000;\n\nlet analysisText;\nif (total <= P1 + P2 + P3) {\n  analysisText = text;\n} else {\n  const mid = Math.floor(total / 2);\n  analysisText =\n    text.substring(0, P1) +\n    '\\n\\n[── TENGAH DOKUMEN ──]\\n\\n' +\n    text.substring(mid - P2/2, mid + P2/2) +\n    '\\n\\n[── AKHIR DOKUMEN ──]\\n\\n' +\n    text.substring(total - P3);\n}\n\nconst systemPrompt = `Kamu adalah sistem ekstraksi IPO otomatis untuk pasar modal Indonesia.\nAnalisis teks prospektus dan kembalikan summary terstruktur dalam HTML Telegram.\n\nTAG HTML YANG BOLEH: <b>, <i>, <code>, <blockquote>\nTAG YANG DILARANG: div, p, ul, li, h1-h6, table, tr, td — JANGAN DIGUNAKAN.\nGunakan • (bullet biasa) untuk list, BUKAN tag HTML.\n\n═══════════════════════════════════\nTIER 1 — WAJIB DIISI (data ini hampir selalu ada di halaman awal prospektus)\n═══════════════════════════════════\n\n<b>📋 PROFIL PERUSAHAAN</b>\n• Nama emiten (lengkap dengan Tbk)\n• Bidang usaha utama\n• Sektor BEI\n• Kota & provinsi kantor pusat\n• Status: PMDN atau PMA\n\n<b>📈 PENAWARAN SAHAM</b>\n• Jumlah saham yang ditawarkan\n• Harga penawaran per saham (Rp)\n• Nilai nominal per saham (Rp)\n• Persentase ke publik (%)\n• Total dana diraih (Rp) — hitung jika perlu: jumlah × harga\n\n<b>🗓️ JADWAL IPO</b>\n• Tanggal efektif OJK\n• Masa penawaran umum (dari – sampai)\n• Tanggal pencatatan di BEI\n\n<b>🏦 LEMBAGA PENUNJANG</b>\n• Penjamin Pelaksana Emisi Efek (lead underwriter)\n• Co-underwriter lainnya (jika ada, maks 3)\n• KAP / Auditor\n• BAE (Biro Administrasi Efek)\n• Konsultan Hukum\n\n═══════════════════════════════════\nTIER 2 — BEST EFFORT (isi jika ditemukan; jika tidak, berikan page hint)\n═══════════════════════════════════\n\n<b>👥 MANAJEMEN</b>\n• Direktur Utama: [nama] — biasanya di bab \"Direksi dan Dewan Komisaris\" (~hal. ${Math.round(numpages * 0.2)}–${Math.round(numpages * 0.4)})\n• Komisaris Utama: [nama]\n• Komisaris Independen: [nama]\n\n<b>💰 PENGGUNAAN DANA</b>\n• [persentase]: [peruntukan] — ada di bab \"Rencana Penggunaan Dana\"\nFormat: \"70%: pembelian aset tetap\" bukan kalimat panjang\n\n<b>🏛️ PEMEGANG SAHAM PASCA-IPO</b>\nFormat WAJIB sebagai list, BUKAN tabel markdown:\n• [Nama pemegang saham]: [X]%\nBiasanya di bab \"Struktur Permodalan\"\n\n<b>⚠️ RISIKO UTAMA</b>\nTulis 3 risiko paling material dari bab Faktor Risiko:\n• [Risiko 1]\n• [Risiko 2]\n• [Risiko 3]\n\n═══════════════════════════════════\nATURAN FALLBACK — SANGAT PENTING\n═══════════════════════════════════\n\nJANGAN tulis \"Tidak tersedia\" begitu saja.\n\nJika data TIER 1 tidak ditemukan:\n→ Tulis: <i>⚠️ Tidak ditemukan dalam teks yang dianalisis</i>\n\nJika data TIER 2 tidak ditemukan:\n→ Cari kata kunci terkait di teks. Jika tetap tidak ada, tulis:\n<i>📍 Cek manual: [nama bab yang relevan], perkiraan hal. [estimasi berdasarkan ${numpages} hal. total]</i>\n\nContoh fallback yang benar:\n• Direktur Utama: <i>📍 Cek manual: Bab Direksi & Dewan Komisaris, perkiraan hal. ${Math.round(numpages * 0.25)}–${Math.round(numpages * 0.35)}</i>\n• Penggunaan Dana: <i>📍 Cek manual: Bab Rencana Penggunaan Dana, perkiraan hal. ${Math.round(numpages * 0.1)}–${Math.round(numpages * 0.2)}</i>\n• Pemegang Saham: <i>📍 Cek manual: Bab Struktur Permodalan / Keterangan Saham, perkiraan hal. ${Math.round(numpages * 0.3)}–${Math.round(numpages * 0.45)}</i>\n\nEstimasi halaman dihitung proporsional dari total ${numpages} halaman dokumen.\nTulis dalam Bahasa Indonesia profesional. Jangan tambahkan teks di luar struktur di atas.`;\n\nreturn [{\n  json: {\n    requestBody: {\n      model: 'gpt-4o-mini',\n      messages: [\n        { role: 'system', content: systemPrompt },\n        { role: 'user', content: `File: ${fileName} (${numpages} hal.)\\n\\n${analysisText}` }\n      ],\n      temperature: 0.1,\n      max_tokens: 2500\n    },\n    chatId\n  }\n}];\n"
+      },
+      "id": "eb7c7b84-26a9-4d16-a135-74ee3d10d13a",
+      "name": "Build Summary Prompt",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        752,
+        688
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.requestBody }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "95ebd818-48c2-4545-ab54-9b7f2449bf9e",
+      "name": "Call OpenAI Summary",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1040,
+        688
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "openAiApi": {
+          "id": "l8c80qpQAUY0N0GT",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const resp = $input.first().json;\nconst rawContent = resp.choices?.[0]?.message?.content || '';\nconst chatId = $('Build Summary Prompt').first().json.chatId;\nconst fileName = $('Telegram Trigger').first().json.message?.document?.file_name || 'prospektus.pdf';\n\nreturn [{\n  json: {\n    output: rawContent,\n    chatId,\n    fileName\n  }\n}];\n"
+      },
+      "id": "c2769cdf-9b32-4fd1-920f-7cb66b7a1938",
+      "name": "Parse Summary",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        1312,
+        688
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "jsCode": "const rawText = $input.first().json.output || '';\nconst cleanText = rawText.replace(/^```[\\w]*\\n?/m, '').replace(/\\n?```$/m, '').trim();\nconst chatId  = $input.first().json.chatId;\n\n// Ambil hanya Tier 1 sections dari output LLM\n// Potong sebelum Tier 2 marker\nconst tier2Markers = ['👥 MANAJEMEN', '💰 PENGGUNAAN DANA', '🏛️ PEMEGANG SAHAM', '⚠️ RISIKO UTAMA'];\nlet shortText = cleanText;\nlet cutIndex = shortText.length;\n\nfor (const marker of tier2Markers) {\n  const idx = shortText.indexOf(marker);\n  if (idx > 0 && idx < cutIndex) cutIndex = idx;\n}\n\nshortText = shortText.substring(0, cutIndex).trim();\n\n// Trim ke maks 3800 chars untuk satu pesan\nif (shortText.length > 3800) {\n  shortText = shortText.substring(0, 3780) + '\\n<i>... (ringkasan dipotong)</i>';_\n}\n// Close any unclosed <b> and <i> tags after trimming\nconst bOpen = (shortText.match(/<b>/g) || []).length;\nconst bClose = (shortText.match(/<\\/b>/g) || []).length;\nconst iOpen = (shortText.match(/<i>/g) || []).length;\nconst iClose = (shortText.match(/<\\/i>/g) || []).length;\nfor (let n = 0; n < bOpen - bClose; n++) shortText += '</b>';\nfor (let n = 0; n < iOpen - iClose; n++) shortText += '</i>';\n\n// Tambahkan hint chatbot di bawah\nconst hint = `\\n\\n━━━━━━━━━━━━━━━━━━━━\n💬 <b>Punya pertanyaan lebih lanjut?</b>\nKetik langsung pertanyaanmu, misalnya:\n<i>\"Apa rencana penggunaan dana IPO ini?\"</i>\n<i>\"Siapa pemegang saham terbesarnya?\"</i>\n<i>\"Apa saja risiko utama perusahaan ini?\"</i>`;\n\n// Fix nested/unclosed <b> tags by ensuring no nested same tags\n\n\nreturn [{\n  json: {\n    shortText: shortText + hint,\n    chatId\n  }\n}];"
+      },
+      "id": "dfa1ae8a-104d-4639-a50e-e2d2e188c11f",
+      "name": "Format Short Telegram",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        1600,
+        576
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.shortText }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "769a25d5-e466-4c4e-b9c9-ebfc803c4fd8",
+      "name": "Telegram Send Summary",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        1840,
+        576
+      ],
+      "typeVersion": 1.2,
+      "webhookId": "0fb266ce-82ab-40f9-b64c-999d1e0feb4b",
+      "credentials": {
+        "telegramApi": {
+          "id": "bycQfgOeXmKCBobM",
+          "name": "IPO Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.output || '';\nconst fileName = $input.first().json.fileName || '';\nconst date = new Date().toISOString().split('T')[0];\n\n// Simple field extraction from the LLM output text\n// Extract text after bold label patterns\nfunction extract(text, label) {\n  const patterns = [\n    new RegExp(`${label}[:\\\\s]+([^\\\\n]+)`, 'i'),\n    new RegExp(`•\\\\s*${label}[:\\\\s]+([^\\\\n]+)`, 'i'),\n  ];\n  for (const p of patterns) {\n    const m = text.match(p);\n    if (m && m[1]) return m[1].replace(/<[^>]*>/g, '').trim();\n  }\n  return '';\n}\n\n// Extract sections\nconst namaEmiten    = extract(raw, 'Nama emiten') || extract(raw, 'Nama');\nconst bidangUsaha   = extract(raw, 'Bidang usaha');\nconst sektor        = extract(raw, 'Sektor');\nconst kotaProvinsi  = extract(raw, 'Kota');\nconst status        = extract(raw, 'Status');\nconst jmlSaham      = extract(raw, 'Jumlah saham');\nconst harga         = extract(raw, 'Harga penawaran');\nconst nilaiNominal  = extract(raw, 'Nilai nominal');\nconst persPublik    = extract(raw, 'Persentase');\nconst totalDana     = extract(raw, 'Total dana');\nconst tglEfektif    = extract(raw, 'Tanggal efektif') || extract(raw, 'efektif');\nconst penawaran     = extract(raw, 'Masa penawaran');\nconst tglCatat      = extract(raw, 'pencatatan di BEI') || extract(raw, 'pencatatan');\nconst underwriter   = extract(raw, 'Penjamin Pelaksana') || extract(raw, 'underwriter');\nconst auditor       = extract(raw, 'KAP') || extract(raw, 'Auditor');\nconst bae           = extract(raw, 'BAE');\nconst konsHukum     = extract(raw, 'Konsultan Hukum');\nconst dirut         = extract(raw, 'Direktur Utama');\nconst komut         = extract(raw, 'Komisaris Utama');\n\nreturn [{\n  json: {\n    tanggal: date,\n    file: fileName,\n    nama_emiten: namaEmiten,\n    bidang_usaha: bidangUsaha,\n    sektor: sektor,\n    kota_provinsi: kotaProvinsi,\n    status_pmdn_pma: status,\n    jumlah_saham: jmlSaham,\n    harga_penawaran: harga,\n    nilai_nominal: nilaiNominal,\n    persen_publik: persPublik,\n    total_dana: totalDana,\n    tgl_efektif: tglEfektif,\n    masa_penawaran: penawaran,\n    tgl_pencatatan: tglCatat,\n    underwriter: underwriter,\n    auditor: auditor,\n    bae: bae,\n    konsultan_hukum: konsHukum,\n    direktur_utama: dirut,\n    komisaris_utama: komut\n  }\n}];\n"
+      },
+      "id": "b7c60a52-0e40-4316-a528-2442b3118b59",
+      "name": "Build Sheets Row",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        1600,
+        688
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1HmyUdzsl1RUTlwCbjzLgiMJC6NeEXaB3-mLCi6-EaeQ/edit?usp=sharing",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Summary",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HmyUdzsl1RUTlwCbjzLgiMJC6NeEXaB3-mLCi6-EaeQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "tanggal_proses"
+          ],
+          "schema": [
+            {
+              "id": "tanggal_proses",
+              "displayName": "tanggal_proses",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "nama_emiten",
+              "displayName": "nama_emiten",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "sektor",
+              "displayName": "sektor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "kota_provinsi",
+              "displayName": "kota_provinsi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status_pmdn_pma",
+              "displayName": "status_pmdn_pma",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "jumlah_saham",
+              "displayName": "jumlah_saham",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "harga_penawaran",
+              "displayName": "harga_penawaran",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "nilai_nominal",
+              "displayName": "nilai_nominal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "persen_publik",
+              "displayName": "persen_publik",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "total_dana",
+              "displayName": "total_dana",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tgl_efektif",
+              "displayName": "tgl_efektif",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "masa_penawaran",
+              "displayName": "masa_penawaran",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tgl_pencatatan",
+              "displayName": "tgl_pencatatan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "underwriter",
+              "displayName": "underwriter",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "auditor",
+              "displayName": "auditor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "bae",
+              "displayName": "bae",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "konsultan_hukum",
+              "displayName": "konsultan_hukum",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "direktur_utama",
+              "displayName": "direktur_utama",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "komisaris_utama",
+              "displayName": "komisaris_utama",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tanggal",
+              "displayName": "tanggal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "file",
+              "displayName": "file",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "bidang_usaha",
+              "displayName": "bidang_usaha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "d17d21ab-c38d-43bc-9a62-c2917b906289",
+      "name": "Google Sheets Append",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [
+        1840,
+        688
+      ],
+      "typeVersion": 4.5,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "1i0E7OQQl98Cgspq",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "={{ $json.docName }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1ek0Dux6VjSk4t2WSLNWSnkzwG60P5mQL",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "88b86558-2666-4876-946f-022aa12b0830",
+      "name": "Google Drive Upload",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        1840,
+        816
+      ],
+      "typeVersion": 3,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "s7Rb8J77klxOtKM2",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}",
+        "text": "😕 Format tidak didukung. Kirim file <b>PDF</b> prospektus.",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "b19a0ab7-f173-402d-8dd7-28d2848177a4",
+      "name": "Unsupported Message",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        0,
+        640
+      ],
+      "typeVersion": 1.2,
+      "webhookId": "47666309-3fd6-4f60-a302-020eea2f7b06",
+      "credentials": {
+        "telegramApi": {
+          "id": "bycQfgOeXmKCBobM",
+          "name": "IPO Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message?.chat?.id || $json.callback_query?.from?.id }}",
+        "text": "🤖 IPO Intelligence Bot\n\nHalo! Bot ini membantu menganalisis prospektus IPO dari BEI.\n\n📌 Menu:\n📄 /dokumen — Upload & analisis prospektus PDF\n💬 /tanya — Tanya seputar IPO ke AI\n📊 /ringkasan — Lihat ringkasan IPO terakhir\n📋 /daftar — Daftar IPO yang sudah diproses dan log Q&A\n❓ /bantuan — Panduan penggunaan bot\n\nMulai dengan mengetik /dokumen untuk upload prospektus.",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "f6c021a3-c7b6-40ad-8a10-f8e83123c945",
+      "name": "Send Welcome Menu",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "50d8e091-72c7-4dae-9470-dbaa4d01f76c",
+      "credentials": {
+        "telegramApi": {
+          "id": "bycQfgOeXmKCBobM",
+          "name": "IPO Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "caseSensitive": true,
+                  "typeValidation": "loose"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "cb-upload",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.callback_query.data }}",
+                    "rightValue": "upload_prospektus"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "upload_prospektus"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "caseSensitive": true,
+                  "typeValidation": "loose"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "cb-chat",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.callback_query.data }}",
+                    "rightValue": "chat_mode"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "chat_mode"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "caseSensitive": true,
+                  "typeValidation": "loose"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "cb-help",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.callback_query.data }}",
+                    "rightValue": "help"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "help"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "id": "ffdced8e-f7fb-4c89-95c1-7c4d7e50941f",
+      "name": "Callback Router",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        240,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message?.chat?.id || $json.callback_query?.from?.id }}",
+        "text": "📄 <b>Upload Prospektus IPO</b>\n\nSilakan kirim file <b>PDF prospektus</b> langsung ke chat ini.\n\nBot akan memproses:\n• 📊 Ringkasan eksekutif (profil, penawaran, jadwal)\n• 💾 Simpan ke Google Sheets & Google Drive\n• 🧠 Embed ke database untuk tanya-jawab\n\n<i>Format: PDF • Maks: 20MB</i>",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "43c0e83a-01ea-458a-8df3-b731388d085a",
+      "name": "Ask Upload PDF",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        160
+      ],
+      "webhookId": "1ea0e36b-3e68-4f04-9b07-e5f25312d654",
+      "credentials": {
+        "telegramApi": {
+          "id": "bycQfgOeXmKCBobM",
+          "name": "IPO Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message?.chat?.id || $json.callback_query?.from?.id }}",
+        "text": "💬 <b>Mode Tanya-Jawab</b>\n\nKetik pertanyaan apapun tentang prospektus yang sudah diupload.\n\n<b>Contoh:</b>\n• <i>\"Berapa total dana yang dihimpun?\"</i>\n• <i>\"Apa rencana penggunaan dana IPO ini?\"</i>\n• <i>\"Siapa pemegang saham terbesar?\"</i>\n• <i>\"Apa saja risiko utama perusahaan ini?\"</i>\n\n👇 Langsung ketik pertanyaanmu:",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "5f1dcf6b-7d33-4ea7-9877-6abf4b20ac2e",
+      "name": "Activate Chat Mode",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        288
+      ],
+      "webhookId": "95646e57-6777-44fd-a673-9c5b61b24881",
+      "credentials": {
+        "telegramApi": {
+          "id": "bycQfgOeXmKCBobM",
+          "name": "IPO Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message?.chat?.id || $json.callback_query?.from?.id }}",
+        "text": "❓ <b>Panduan Penggunaan</b>\n\n📄 <b>/dokumen</b> — Upload prospektus PDF\n<i>Kirim PDF → ringkasan otomatis + simpan ke database</i>\n\n💬 <b>/tanya</b> — Tanya seputar IPO\n<i>Tanya apapun tentang isi prospektus yang sudah diupload</i>\n\n📊 <b>/ringkasan</b> — Ringkasan IPO terakhir\n<i>Lihat ringkasan IPO paling baru dari database</i>\n\n📋 <b>/daftar</b> — Daftar IPO diproses\n<i>Semua prospektus yang sudah pernah dianalisis</i>\n\n❓ <b>/bantuan</b> — Panduan ini\n\nKetik /start untuk kembali ke menu.",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "dfa3c616-0fa3-49ef-846d-dfb095a68b6d",
+      "name": "Help Message",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        416
+      ],
+      "webhookId": "e56395e7-3fd2-47ac-8259-be7d9706734e",
+      "credentials": {
+        "telegramApi": {
+          "id": "bycQfgOeXmKCBobM",
+          "name": "IPO Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const rawText = $input.first().json.output || '';\nconst fileName = $input.first().json.fileName || 'prospektus.pdf';\nconst date      = new Date().toLocaleDateString('id-ID', {day:'2-digit', month:'long', year:'numeric'});\n\n// Strip HTML tags for plain text Google Doc\nconst plainText = rawText\n  .replace(/<b>/g, '').replace(/<\\/b>/g, '')\n  .replace(/<i>/g, '').replace(/<\\/i>/g, '')\n  .replace(/<code>/g, '').replace(/<\\/code>/g, '')\n  .replace(/<blockquote>/g, '').replace(/<\\/blockquote>/g, '')\n  .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');\n\nconst header = `EXECUTIVE SUMMARY – IPO INTELLIGENCE SYSTEM\\nFile: ${fileName}\\nTanggal Ekstraksi: ${date}\\n${'='.repeat(50)}\\n\\n`;\n\nconst content = header + plainText;\n\n// Generate safe filename\nconst safeName = fileName.replace('.pdf', '').replace(/[^a-zA-Z0-9\\s]/g, '').trim();\nconst docName = `IPO Summary – ${safeName} (${date}).txt`;\n\n// Convert text content to binary for Google Drive upload\nconst binaryData = Buffer.from(content, 'utf8').toString('base64');\n\nreturn [{\n  json: {\n    content,\n    docName,\n    fileName\n  },\n  binary: {\n    data: {\n      data: binaryData,\n      mimeType: 'text/plain',\n      fileName: docName,\n      fileExtension: 'txt'\n    }\n  }\n}];"
+      },
+      "id": "26c5f6ce-ad3a-407e-bd75-8ce69c5fbf0f",
+      "name": "Build Doc Content",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        1600,
+        816
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "content": "## 🔲 CALLBACK ROUTER\n*Inline buttons — future feature*\n\nAktif hanya jika user klik tombol\ninline keyboard (bukan ketik command).\n\n**Saat ini:** gunakan /command saja.\nNode ini tidak mengganggu flow utama.",
+        "height": 208,
+        "width": 302,
+        "color": 5
+      },
+      "id": "3f478fbb-7d14-49f3-8769-469d9a4cd24c",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        480,
+        384
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message?.chat?.id \n\n $json.callback_query?.from?.id }}",
+        "text": "Fitur ini menampilkan data dari Google Sheets.\n\nSementara, kamu bisa lihat langsung di:\n🔗 <a href=\"https://docs.google.com/spreadsheets/d/1HmyUdzsl1RUTlwCbjzLgiMJC6NeEXaB3-mLCi6-EaeQ/edit?usp=sharing\">Google Sheets — IPO Database</a>\n🔗 <a href=\"https://docs.google.com/spreadsheets/d/1LKR_wOZjwPVSVcImuRHeNJAkIutLXt_No5ftJcDq17U/edit?usp=sharing\">Google Sheets — Log Q&A</a>\n\nKetik /tanya untuk tanya-jawab tentang IPO yang sudah diproses.",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        48
+      ],
+      "id": "17d7097c-5f06-4282-b548-00cd9064a0f5",
+      "name": "Sheets Redirect",
+      "webhookId": "60484733-790f-4ef4-80fb-ee285734d5eb",
+      "credentials": {
+        "telegramApi": {
+          "id": "fzcpzPtAwvbRU5l0",
+          "name": "Telegram account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message?.chat?.id \n\n $json.callback_query?.from?.id }}",
+        "text": "Fitur ini menampilkan data dari Google Sheets.\n\nSementara, kamu bisa lihat langsung di:\n🔗 <a href=\"https://drive.google.com/drive/u/0/folders/1ek0Dux6VjSk4t2WSLNWSnkzwG60P5mQL\">Google Drive — IPO Database</a>\n\n<i>Ketik /tanya untuk tanya-jawab tentang IPO yang sudah diproses.</i>",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        208
+      ],
+      "id": "57ad289a-f249-4b6c-bc94-3ff9327f6ff8",
+      "name": "Drive Redirect",
+      "webhookId": "e9f71692-22a8-4adb-b94c-7b2ed91d45dc",
+      "credentials": {
+        "telegramApi": {
+          "id": "fzcpzPtAwvbRU5l0",
+          "name": "Telegram account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "ipo_documents",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "chat_id",
+              "fieldValue": "={{  $('Telegram Trigger').item.json.message.chat.id  }}"
+            },
+            {
+              "fieldId": "filename",
+              "fieldValue": "={{ $('Telegram Trigger').item.json.message.document?.file_name || $json.fileName || $json.file_name || 'prospektus.pdf' }}"
+            },
+            {
+              "fieldId": "content",
+              "fieldValue": "={{  $json.text  }}"
+            }
+          ]
+        }
+      },
+      "id": "c037c343-acaa-40b2-82cc-ab65c74040b9",
+      "name": "Save Document Text",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -416,
+        832
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "oxApFIclhb4q5MNH",
+          "name": "Supabase - IPO DB"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').first().json.message.chat.id }}",
+        "text": "=✅ Dokumen tersimpan untuk Q&A.\nFile: <b>{{ $json.filename || $('Telegram Trigger').item.json.message.document?.file_name || 'prospektus.pdf' }}</b>\nChat ID: <code>{{ $('Telegram Trigger').item.json.message.chat.id }}</code>\n\nKamu sekarang bisa langsung ketik pertanyaan apapun tentang isi prospektus ini.",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "a5c1ec08-e8ea-42cb-8b71-abbacb6b72db",
+      "name": "Telegram Save Confirm",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -240,
+        832
+      ],
+      "webhookId": "49e160e4-a506-41ec-8b2f-3883476e37b2",
+      "credentials": {
+        "telegramApi": {
+          "id": "fzcpzPtAwvbRU5l0",
+          "name": "Telegram account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "ipo_documents",
+        "limit": 1,
+        "filterType": "string",
+        "filterString": "=chat_id=eq.{{  $('Telegram Trigger').first().json.message.chat.id }}"
+      },
+      "id": "392c91f5-6407-4fb8-8a72-e4c9c55e064a",
+      "name": "Fetch Document",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1632,
+        560
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "oxApFIclhb4q5MNH",
+          "name": "Supabase - IPO DB"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const docData = $input.first().json;\nconst chatId = $('Telegram Trigger').first().json.message.chat.id;\nconst msg = $('Telegram Trigger').first().json;\nconst text = msg.message?.text || '';\nconst cb = msg.callback_query?.data || '';\nlet question = text || cb || '';\n\n// Strip /tanya prefix\nif (question.startsWith('/tanya')) {\n  question = question.replace('/tanya', '').trim();\n}\n\n// No document\nif (!docData || !docData.filename) {\n  return [{\n    json: {\n      chatId,\n      noDoc: true,\n      answer: `Belum ada prospektus yang diupload.\n\nSilakan kirim /dokumen dan upload file PDF prospektus terlebih dahulu.`\n    }\n  }];\n}\n\n// Document exists but content empty\nif (!docData.content || docData.content.trim() === '') {\n  return [{\n    json: {\n      chatId,\n      noDoc: true,\n      answer: `Gagal membaca isi dokumen ${docData.filename}.\n\nKemungkinan file PDF tidak bisa diekstrak teksnya (misal: PDF scan/gambar). Coba upload ulang dokumen dalam format PDF yang bisa di-copy teksnya.`\n    }\n  }];\n}\n\nconst docText = docData.content;\nconst filename = docData.filename || 'prospektus';\n\n// Trim if too long\nconst maxChars = 80000;\nconst trimmed = docText.length > maxChars\n  ? docText.substring(0, maxChars) + `\n\n[...dokumen dipotong karena terlalu panjang]`\n  : docText;\n\nreturn [{\n  json: {\n    chatId,\n    noDoc: false,\n    filename,\n    question,\n    systemPrompt: `Kamu adalah asisten analisis prospektus IPO Indonesia.\nWAJIB jawab dalam Bahasa Indonesia yang jelas dan formal.\nJawaban SINGKAT: 3-6 bullet atau 3-5 kalimat, maksimal 1500 karakter.\nJika informasi tidak ada di dokumen, katakan jelas bahwa tidak tersedia di prospektus ini.\nFormat jawaban menggunakan Telegram HTML: <b>bold</b>, <i>italic</i>.\n\nPENTING - VALIDASI KONTEKS:\nNama perusahaan dalam prospektus ini adalah sesuai isi dokumen. Jika user menyebut nama perusahaan yang TIDAK cocok dengan isi dokumen, WAJIB sampaikan: \"Dokumen yang sedang dimuat adalah prospektus <b>[nama di dokumen]</b>, bukan perusahaan yang Anda sebutkan. Berikut jawaban berdasarkan dokumen yang tersedia:\"\nLanjutkan menjawab dari dokumen yang ada setelahnya.`,\n    userMessage: `Dokumen prospektus: ${filename}\n\n${trimmed}\n\n--\nPertanyaan: ${question}`\n  }\n}];\n"
+      },
+      "id": "4b463566-3389-4c80-a724-88b6f6d9d946",
+      "name": "Build QA Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1472,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "check-nodoc",
+              "operator": {
+                "type": "boolean",
+                "operation": "false"
+              },
+              "leftValue": "={{ $json.noDoc }}"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "fbc2969c-e118-4efc-8659-422e82bd134f",
+      "name": "Check Has Document",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1328,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Build QA Prompt').first().json.chatId }}",
+        "text": "={{  $json.output[0].content[0].text  }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "36035342-14a2-41ac-aa60-92495c135ca1",
+      "name": "Send Answer",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -752,
+        496
+      ],
+      "webhookId": "24aa6bdf-f9e4-4198-be4e-927c1be02e7b",
+      "credentials": {
+        "telegramApi": {
+          "id": "fzcpzPtAwvbRU5l0",
+          "name": "Telegram account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.answer }}",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "5804ef1d-2218-4f09-a2a0-d26dc17af8b2",
+      "name": "Send No Document",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -1152,
+        624
+      ],
+      "webhookId": "7b52688f-9d4e-4843-b0fb-1b91fb9c46f1",
+      "credentials": {
+        "telegramApi": {
+          "id": "fzcpzPtAwvbRU5l0",
+          "name": "Telegram account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "={{ $json.systemPrompt }}"
+            },
+            {
+              "content": "={{ $json.userMessage }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        -1056,
+        496
+      ],
+      "id": "b1154658-cb82-45f8-baf0-6e04b08d6fa6",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "l8c80qpQAUY0N0GT",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const prompt = $('Build QA Prompt').first().json;\nconst answer = $input.first().json.output?.[0]?.content?.[0]?.text || '';\nconst now = new Date().toISOString();\n\nreturn [{\n  json: {\n    timestamp: now,\n    chat_id: prompt.chatId || '',\n    filename: prompt.filename || '',\n    question: prompt.question || '',\n    answer\n  }\n}];"
+      },
+      "id": "88849b3f-fdfc-4217-be00-d5168fd448d2",
+      "name": "Build QA Log Row",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1440,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1LKR_wOZjwPVSVcImuRHeNJAkIutLXt_No5ftJcDq17U/edit?usp=sharing",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LKR_wOZjwPVSVcImuRHeNJAkIutLXt_No5ftJcDq17U/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "chat_id",
+              "displayName": "chat_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "filename",
+              "displayName": "filename",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "question",
+              "displayName": "question",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "answer",
+              "displayName": "answer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tanggal",
+              "displayName": "tanggal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "file",
+              "displayName": "file",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "nama_emiten",
+              "displayName": "nama_emiten",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "bidang_usaha",
+              "displayName": "bidang_usaha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "sektor",
+              "displayName": "sektor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "kota_provinsi",
+              "displayName": "kota_provinsi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status_pmdn_pma",
+              "displayName": "status_pmdn_pma",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "jumlah_saham",
+              "displayName": "jumlah_saham",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "harga_penawaran",
+              "displayName": "harga_penawaran",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "nilai_nominal",
+              "displayName": "nilai_nominal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "persen_publik",
+              "displayName": "persen_publik",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "total_dana",
+              "displayName": "total_dana",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tgl_efektif",
+              "displayName": "tgl_efektif",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "masa_penawaran",
+              "displayName": "masa_penawaran",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tgl_pencatatan",
+              "displayName": "tgl_pencatatan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "underwriter",
+              "displayName": "underwriter",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "auditor",
+              "displayName": "auditor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "bae",
+              "displayName": "bae",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "konsultan_hukum",
+              "displayName": "konsultan_hukum",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "direktur_utama",
+              "displayName": "direktur_utama",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "komisaris_utama",
+              "displayName": "komisaris_utama",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "114eb6ec-7f63-4e38-83a6-445fd3efef35",
+      "name": "Google Sheets Append QA",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        -1216,
+        960
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "1i0E7OQQl98Cgspq",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "tableId": "ipo_documents",
+        "filterType": "string",
+        "filterString": "=id=eq.{{  $('Fetch Latest Document ID').first().json.id }}"
+      },
+      "id": "bc6c616d-a983-45ba-a713-3600122a6de1",
+      "name": "Delete Existing Document",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -608,
+        832
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "oxApFIclhb4q5MNH",
+          "name": "Supabase - IPO DB"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "ipo_documents",
+        "limit": 1,
+        "filterType": "string",
+        "filterString": "=chat_id=eq.{{  $('Telegram Trigger').first().json.message.chat.id }}&order=created_at.desc"
+      },
+      "id": "d9f419c9-5168-4f37-885e-5001b844fd98",
+      "name": "Fetch Latest Document ID",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -800,
+        832
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "oxApFIclhb4q5MNH",
+          "name": "Supabase - IPO DB"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "has-doc",
+              "operator": {
+                "type": "number",
+                "operation": "larger"
+              },
+              "leftValue": "={{ $json.id || 0 }}",
+              "rightValue": 0
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "f4e8e11e-444a-4c78-8bbd-89cacf189265",
+      "name": "Check Existing Document",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -608,
+        1056
+      ]
+    }
+  ],
+  "pinData": {
+    "Telegram Trigger": [
+      {
+        "json": {
+          "update_id": 792926097,
+          "message": {
+            "message_id": 185,
+            "from": {
+              "id": 1471544733,
+              "is_bot": false,
+              "first_name": "JR",
+              "username": "jemputrezekii",
+              "language_code": "en"
+            },
+            "chat": {
+              "id": 1471544733,
+              "first_name": "JR",
+              "username": "jemputrezekii",
+              "type": "private"
+            },
+            "date": 1773632565,
+            "document": {
+              "file_name": "23_trgu-prospektus-ipo-2022.pdf",
+              "mime_type": "application/pdf",
+              "file_id": "BQACAgUAAxkBAAO5abd8NSwwWDuEQCWO7lFpMPGfNQkAAmIcAAKK3rlVmWnlmqIkeSg6BA",
+              "file_unique_id": "AgADYhwAAoreuVU",
+              "file_size": 8491416
+            }
+          }
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Command Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Command Router": {
+      "main": [
+        [
+          {
+            "node": "Send Welcome Menu",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ask Upload PDF",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Activate Chat Mode",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Drive Redirect",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Sheets Redirect",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Help Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Callback Router",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Processing",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fetch Document",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Unsupported Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Processing": {
+      "main": [
+        [
+          {
+            "node": "Telegram Download File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Download File": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Summary Prompt": {
+      "main": [
+        [
+          {
+            "node": "Call OpenAI Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call OpenAI Summary": {
+      "main": [
+        [
+          {
+            "node": "Parse Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Summary": {
+      "main": [
+        [
+          {
+            "node": "Format Short Telegram",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Build Sheets Row",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Build Doc Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Short Telegram": {
+      "main": [
+        [
+          {
+            "node": "Telegram Send Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Sheets Row": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets Append",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Callback Router": {
+      "main": [
+        [
+          {
+            "node": "Ask Upload PDF",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Activate Chat Mode",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Help Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Doc Content": {
+      "main": [
+        [
+          {
+            "node": "Google Drive Upload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Build Summary Prompt",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch Latest Document ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Document Text": {
+      "main": [
+        [
+          {
+            "node": "Telegram Save Confirm",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Document": {
+      "main": [
+        [
+          {
+            "node": "Build QA Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build QA Prompt": {
+      "main": [
+        [
+          {
+            "node": "Check Has Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Has Document": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send No Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Send Answer",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Build QA Log Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build QA Log Row": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets Append QA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Existing Document": {
+      "main": [
+        [
+          {
+            "node": "Save Document Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Latest Document ID": {
+      "main": [
+        [
+          {
+            "node": "Check Existing Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Existing Document": {
+      "main": [
+        [
+          {
+            "node": "Delete Existing Document",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Save Document Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "bcdceaa9-6c90-402d-91cc-11cc8e822820",
+  "meta": {
+    "instanceId": "3b8d3fe9133914b12c8cc2288a01f8c6731fcd8e79c20942411088839f4f04c1"
+  },
+  "id": "ePLGEgwgJlQQ5L48",
+  "tags": []
+}
